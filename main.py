@@ -1,9 +1,16 @@
+import tkinter
+from tkinter import ttk
 from pytube import YouTube
-import tkinter as tk
-from tkinter import *
-from tkinter import messagebox, filedialog
 
-link = input("Enter the Url here: ")
+window = tkinter.Tk(screenName="Youtube Downloader")
+frm = ttk.Frame(window)
+frm.grid()
+ttk.Label(frm, text="Enter URL here: ").grid(row=0)
+url = tkinter.Entry(window)
+url.grid(row=0, column=1)
+window.mainloop()
+
+link = url.get()
 youtube = YouTube(link)
 views = youtube.views
 title = youtube.title
