@@ -2,15 +2,32 @@ import tkinter
 from tkinter import ttk
 from pytube import YouTube
 
-window = tkinter.Tk(screenName="Youtube Downloader")
+
+def onClick():
+    global link
+    link = url.get()
+
+
+def close():
+    window.quit()
+
+
+link = ""
+window = tkinter.Tk()
+window.title("Youtube-Convertor")
 frm = ttk.Frame(window)
-frm.grid()
-ttk.Label(frm, text="Enter URL here: ").grid(row=0)
 url = tkinter.Entry(window)
-url.grid(row=0, column=1)
+url.insert(0, "Enter Youtube url link here: ")
+url.pack()
+
+save = tkinter.Button(window, text="Save", command=onClick)
+save.pack()
+
+close_button = tkinter.Button(window, text="Exit", command=close)
+close_button.pack()
+
 window.mainloop()
 
-link = url.get()
 youtube = YouTube(link)
 views = youtube.views
 title = youtube.title
@@ -24,8 +41,3 @@ print(f"The length of this video is: {length}")
 ys = youtube.streams.get_highest_resolution()
 ys.download(file)
 print(f"Your Video has been downloaded and can be found{file} ")
-
-
-
-
-
