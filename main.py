@@ -31,29 +31,33 @@ def Browse():
     dir_path.set(dir_name)
 
 
+def Widgets():
+    global url
+    url = tkinter.Entry(window, width=27)
+    url.insert(0, "Enter Youtube url link here: ")
+    url.grid()
+
+    window.destinationText = Entry(window, width=27, textvariable=dir_path)
+    window.destinationText.grid(row=1, column=0)
+
+    download = tkinter.Button(window, text="download", command=OnClick)
+    download.grid(row=0, column=1)
+
+    open_file = tkinter.Button(window, text="Browse", command=Browse)
+    open_file.grid(row=1, column=1)
+
+    close_button = tkinter.Button(window, text="Exit", command=Close)
+    close_button.grid()
+
+
+url = ""
 link = ""
 dir_name = ""
 window = tkinter.Tk()
 window.title("Youtube Convertor")
-frm = ttk.Frame(window)
-url = tkinter.Entry(window, width=27)
-url.insert(0, "Enter Youtube url link here: ")
-url.grid()
-
 dir_path = StringVar()
-
-window.destinationText = Entry(window, width=27, textvariable=dir_path)
-window.destinationText.grid(row=1, column=0)
-
-download = tkinter.Button(window, text="download", command=OnClick)
-download.grid(row=0, column=1)
-
-open_file = tkinter.Button(window, text="Browse", command=Browse)
-open_file.grid(row=1, column=1)
-
-close_button = tkinter.Button(window, text="Exit", command=Close)
-close_button.grid()
-
+frm = ttk.Frame(window)
+Widgets()
 window.mainloop()
 
 youtube = YouTube(link)
